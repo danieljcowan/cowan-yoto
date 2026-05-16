@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, type DragEvent } from 'react';
 import { getCard, saveCard } from '../api/content';
 import { uploadAnimatedIcon } from '../api/icons';
+import { rememberIcon } from '../lib/iconCache';
 import { validateAnimatedIcon } from '../lib/gifValidate';
 import { flattenTracks, setTrackIcon, type FlatTrack } from '../lib/mutate';
 import type { Card } from '../types';
@@ -91,6 +92,7 @@ export function CardDetailScreen({ cardId, onBack, toast }: Props) {
       try {
         const { mediaId, url } = await uploadAnimatedIcon(file, file.name);
         const previewUrl = url ?? URL.createObjectURL(file);
+        if (url) rememberIcon(mediaId, url);
         onAssign(track.chapterKey, track.trackKey, mediaId, previewUrl);
       } catch (e) {
         toast(`${file.name}: ${e}`, 'bad');

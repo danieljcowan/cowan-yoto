@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { hasOAuthCallback, isLoggedIn, logout } from './auth/oauth';
+import { resetIconCache } from './lib/iconCache';
 import { LoginScreen } from './components/LoginScreen';
 import { CallbackScreen } from './components/CallbackScreen';
 import { CardsScreen } from './components/CardsScreen';
@@ -36,6 +37,7 @@ export function App() {
 
   function handleLogout() {
     logout();
+    resetIconCache();
     setView({ kind: 'login' });
   }
 

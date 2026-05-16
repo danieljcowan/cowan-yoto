@@ -2,6 +2,7 @@ import { useState, type DragEvent } from 'react';
 import { IconPreview } from './IconPreview';
 import { validateAnimatedIcon } from '../lib/gifValidate';
 import { uploadAnimatedIcon } from '../api/icons';
+import { rememberIcon } from '../lib/iconCache';
 import type { FlatTrack } from '../lib/mutate';
 
 export interface PendingChange {
@@ -31,6 +32,7 @@ export function TrackRow({ track, pending, onAssign }: Props) {
     try {
       const { mediaId, url } = await uploadAnimatedIcon(file, file.name);
       const previewUrl = url ?? URL.createObjectURL(file);
+      if (url) rememberIcon(mediaId, url);
       onAssign(track.chapterKey, track.trackKey, mediaId, previewUrl);
     } catch (e) {
       setErr(String(e));
