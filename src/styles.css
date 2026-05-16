@@ -1,0 +1,180 @@
+:root {
+  --bg: #0f1115;
+  --panel: #181c24;
+  --panel-2: #1f2530;
+  --border: #2a3140;
+  --text: #e6e8ec;
+  --muted: #8a93a6;
+  --accent: #ff5a3c;
+  --accent-hover: #ff744f;
+  --good: #3fc28e;
+  --bad: #ff5d6c;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+button {
+  font: inherit;
+  background: var(--accent);
+  color: white;
+  border: 0;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+button:hover:not(:disabled) { background: var(--accent-hover); }
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+button.secondary {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+header.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+header.bar h1 { margin: 0; font-size: 18px; font-weight: 600; }
+header.bar .right { display: flex; gap: 8px; align-items: center; }
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  gap: 16px;
+  text-align: center;
+}
+.login h2 { margin: 0; }
+.login p { color: var(--muted); max-width: 400px; }
+.login .error { color: var(--bad); }
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.card-tile {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 0.15s;
+}
+.card-tile:hover { border-color: var(--accent); }
+.card-tile .cover {
+  aspect-ratio: 1;
+  background: var(--panel-2);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.card-tile .cover img { width: 100%; height: 100%; object-fit: cover; }
+.card-tile .title { font-weight: 600; }
+.card-tile .meta { color: var(--muted); font-size: 13px; }
+
+.track-list { display: flex; flex-direction: column; gap: 8px; }
+.track-row {
+  display: grid;
+  grid-template-columns: 40px 64px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+.track-row .num { color: var(--muted); font-variant-numeric: tabular-nums; }
+.track-row .icon-cell {
+  width: 64px; height: 64px;
+  background: var(--panel-2);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 2px dashed transparent;
+}
+.track-row .icon-cell.drag { border-color: var(--accent); }
+.track-row .icon-cell img {
+  width: 48px; height: 48px;
+  image-rendering: pixelated;
+}
+.track-row .icon-cell .empty { color: var(--muted); font-size: 11px; }
+.track-row .title { font-weight: 500; }
+.track-row .err { color: var(--bad); font-size: 12px; }
+.track-row .pending {
+  color: var(--good);
+  font-size: 12px;
+}
+
+.bulk-drop {
+  margin-top: 18px;
+  padding: 18px;
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  text-align: center;
+  color: var(--muted);
+}
+.bulk-drop.drag { border-color: var(--accent); color: var(--text); }
+
+.toast {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: 6px;
+  z-index: 100;
+}
+.toast.good { border-color: var(--good); }
+.toast.bad { border-color: var(--bad); }
+
+.badge {
+  background: var(--accent);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.empty-state {
+  padding: 48px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.back-link {
+  background: none;
+  color: var(--muted);
+  padding: 0;
+  margin-bottom: 8px;
+}
+.back-link:hover { color: var(--text); background: none; }
