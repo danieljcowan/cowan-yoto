@@ -178,3 +178,152 @@ header.bar .right { display: flex; gap: 8px; align-items: center; }
   margin-bottom: 8px;
 }
 .back-link:hover { color: var(--text); background: none; }
+
+/* ---- nav ---- */
+.nav { display: flex; gap: 6px; margin-right: 8px; }
+.nav button.nav-active {
+  background: var(--accent);
+  color: white;
+  border: 1px solid var(--accent);
+}
+
+/* ---- editor ---- */
+.editor {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 20px;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .editor { grid-template-columns: 1fr; }
+}
+
+.editor-main { display: flex; flex-direction: column; gap: 12px; }
+
+.pixel-canvas {
+  width: min(480px, 100%);
+  aspect-ratio: 1;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  touch-action: none;
+  cursor: crosshair;
+  image-rendering: pixelated;
+}
+
+.editor-tools { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.frame-bar {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.frame-strip {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.frame-thumb {
+  background: var(--panel-2);
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: 0 0 auto;
+}
+.frame-thumb:hover { background: var(--panel-2); border-color: var(--muted); }
+.frame-thumb.selected { border-color: var(--accent); }
+.frame-thumb canvas { width: 40px; height: 40px; image-rendering: pixelated; border-radius: 3px; }
+.frame-thumb span { font-size: 11px; color: var(--muted); }
+.frame-actions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.frame-actions .frame-count { color: var(--muted); font-size: 12px; margin-right: auto; }
+
+.editor-side { display: flex; flex-direction: column; gap: 16px; }
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+}
+.panel h3 { margin: 0 0 10px; font-size: 14px; }
+
+.selected-color {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.swatch-big {
+  width: 36px; height: 24px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  display: inline-block;
+}
+
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 5px;
+}
+.swatch {
+  aspect-ratio: 1;
+  border-radius: 5px;
+  border: 2px solid var(--border);
+  padding: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1;
+}
+.swatch:hover { border-color: var(--muted); background: inherit; }
+.swatch.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.checker {
+  background:
+    repeating-conic-gradient(#4a5164 0% 25%, #333a4a 0% 50%) 0 0 / 10px 10px !important;
+}
+
+.preview-row { display: flex; gap: 20px; align-items: flex-start; }
+.preview-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.preview-big {
+  width: 96px; height: 96px;
+  image-rendering: pixelated;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.preview-actual {
+  width: 16px; height: 16px;
+  image-rendering: pixelated;
+  border: 1px solid var(--border);
+}
+
+.apply-panel { display: flex; flex-direction: column; gap: 8px; }
+.apply-btn { font-weight: 600; padding: 12px; }
+
+/* ---- apply flow ---- */
+.apply-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.apply-gif {
+  width: 64px; height: 64px;
+  image-rendering: pixelated;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel-2);
+}
+.apply-hint { color: var(--muted); font-size: 13px; margin-top: 4px; }
+
+.track-row.selectable { cursor: pointer; transition: border-color 0.1s; }
+.track-row.selectable:hover { border-color: var(--muted); }
+.track-row.selectable.selected { border-color: var(--accent); }
+.track-row .checkmark { color: var(--accent); font-size: 18px; width: 24px; text-align: center; }
